@@ -7,5 +7,6 @@ import java.util.List;
 public interface NeighbourHoodService {
     List<NeighbourHood> findAll();
 
+    NeighbourHood findById(Long id);
 //    NeighbourHood save(NeighbourHood neighbourHood);
 }

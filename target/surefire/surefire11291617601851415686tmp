@@ -1,5 +1,5 @@
 #surefire
-#Tue Jul 30 14:53:17 EDT 2019
+#Wed Jul 31 15:45:30 EDT 2019
 classPathUrl.101=/Users/aalejandromr/.m2/repository/io/springfox/springfox-swagger-common/2.9.2/springfox-swagger-common-2.9.2.jar
 includes1=**/*Test.java
 classPathUrl.102=/Users/aalejandromr/.m2/repository/io/springfox/springfox-spring-web/2.9.2/springfox-spring-web-2.9.2.jar
@@ -107,7 +107,7 @@ classPathUrl.16=/Users/aalejandromr/.m2/repository/org/dom4j/dom4j/2.1.1/dom4j-2
 classPathUrl.17=/Users/aalejandromr/.m2/repository/org/hibernate/common/hibernate-commons-annotations/5.0.4.Final/hibernate-commons-annotations-5.0.4.Final.jar
 classPathUrl.18=/Users/aalejandromr/.m2/repository/org/springframework/data/spring-data-jpa/2.1.9.RELEASE/spring-data-jpa-2.1.9.RELEASE.jar
 classPathUrl.19=/Users/aalejandromr/.m2/repository/org/springframework/data/spring-data-commons/2.1.9.RELEASE/spring-data-commons-2.1.9.RELEASE.jar
-pluginPid=26930
+pluginPid=40152
 shutdown=DEFAULT
 classPathUrl.4=/Users/aalejandromr/.m2/repository/org/aspectj/aspectjweaver/1.9.4/aspectjweaver-1.9.4.jar
 classPathUrl.5=/Users/aalejandromr/.m2/repository/org/springframework/boot/spring-boot-starter-jdbc/2.1.6.RELEASE/spring-boot-starter-jdbc-2.1.6.RELEASE.jar

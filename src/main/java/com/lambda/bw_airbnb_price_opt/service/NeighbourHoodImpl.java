@@ -1,5 +1,6 @@
 package com.lambda.bw_airbnb_price_opt.service;
 
+import com.lambda.bw_airbnb_price_opt.exceptions.ResourceNotFoundException;
 import com.lambda.bw_airbnb_price_opt.model.NeighbourHood;
 import com.lambda.bw_airbnb_price_opt.model.NeighbourHoodGroup;
 import com.lambda.bw_airbnb_price_opt.repository.NeighbourHoodGroupRepository;
@@ -21,5 +22,10 @@ public class NeighbourHoodImpl implements NeighbourHoodService {
         List<NeighbourHood> list = new ArrayList<>();
         neighbourHoodRepository.findAll().iterator().forEachRemaining(list::add);
         return list;
+    }
+
+    @Override
+    public NeighbourHood findById(Long id) {
+        return neighbourHoodRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(Long.toString(id)));
     }
 }
