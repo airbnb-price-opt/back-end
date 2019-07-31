@@ -23,6 +23,9 @@ public class User extends Auditable
             unique = true)
     private String username;
 
+    @Column(nullable = false)
+    private Boolean is_verified;
+
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
@@ -41,7 +44,7 @@ public class User extends Auditable
     {
     }
 
-    public User(String username, String password, List<UserRoles> userRoles)
+    public User(String username, String password, List<UserRoles> userRoles, Boolean is_verified)
     {
         setUsername(username);
         setPassword(password);
@@ -49,7 +52,16 @@ public class User extends Auditable
         {
             ur.setUser(this);
         }
+        setIs_verified(is_verified);
         this.userRoles = userRoles;
+    }
+
+    public Boolean getIs_verified() {
+        return is_verified;
+    }
+
+    public void setIs_verified(Boolean is_verified) {
+        this.is_verified = is_verified;
     }
 
     public long getUserid()
