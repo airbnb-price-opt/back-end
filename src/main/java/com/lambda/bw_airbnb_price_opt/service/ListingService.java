@@ -9,4 +9,6 @@ public interface ListingService {
     List<Listing> findAll(Pageable pageable);
 
     Listing save(Listing neighbourHoodGroup);
+
+    Listing update(Listing listing, Long id);
 }

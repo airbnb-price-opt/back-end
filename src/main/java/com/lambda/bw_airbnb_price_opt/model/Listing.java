@@ -13,9 +13,9 @@ public class Listing extends Auditable {
 
     private String name;
 
-    private double latitude;
+    private Double latitude;
 
-    private double longitude;
+    private Double longitude;
 
     private Integer minimum_nights;
 
@@ -49,7 +49,7 @@ public class Listing extends Auditable {
 
     private int review_scores_location;
 
-    private double reviews_per_month;
+    private Double reviews_per_month;
 
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -89,8 +89,8 @@ public class Listing extends Auditable {
 
     public Listing(
             String name,
-            double latitude,
-            double longitude,
+            Double latitude,
+            Double longitude,
             Integer minimum_nights,
             Integer maximum_nights,
             Integer accommodates,
@@ -181,11 +181,11 @@ public class Listing extends Auditable {
         this.review_scores_location = review_scores_location;
     }
 
-    public double getReviews_per_month() {
+    public Double getReviews_per_month() {
         return reviews_per_month;
     }
 
-    public void setReviews_per_month(double reviews_per_month) {
+    public void setReviews_per_month(Double reviews_per_month) {
         this.reviews_per_month = reviews_per_month;
     }
 
@@ -229,19 +229,19 @@ public class Listing extends Auditable {
         this.name = name;
     }
 
-    public double getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(double latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
-    public double getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(double longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 

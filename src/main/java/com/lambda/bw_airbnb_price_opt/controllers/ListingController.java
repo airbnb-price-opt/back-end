@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -73,5 +74,17 @@ public class ListingController {
 
             return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
         }
+
+    @PutMapping(value = "/update/{id}")
+    public ResponseEntity<?> updateUser(HttpServletRequest request,
+            @RequestBody
+                    Listing updateListing,
+            @PathVariable
+                    long id)
+    {
+//        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+        listingService.update(updateListing, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 
 }
