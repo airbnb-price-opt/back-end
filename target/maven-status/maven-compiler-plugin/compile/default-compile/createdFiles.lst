@@ -45,6 +45,7 @@ com/lambda/bw_airbnb_price_opt/model/APIOpenLibrary.class
 com/lambda/bw_airbnb_price_opt/service/RoomTypeImpl.class
 com/lambda/bw_airbnb_price_opt/model/PropertyType.class
 com/lambda/bw_airbnb_price_opt/service/BedTypeService.class
+com/lambda/bw_airbnb_price_opt/model/Resp.class
 com/lambda/bw_airbnb_price_opt/controllers/NeighbourHoodController.class
 com/lambda/bw_airbnb_price_opt/service/NeighbourHoodGroupService.class
 com/lambda/bw_airbnb_price_opt/repository/RoleRepository.class

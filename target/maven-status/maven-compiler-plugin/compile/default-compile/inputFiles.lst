@@ -41,6 +41,7 @@
 /Library/WebServer/Documents/lambda/bw_airbnb_price_opt/src/main/java/com/lambda/bw_airbnb_price_opt/model/Listing.java
 /Library/WebServer/Documents/lambda/bw_airbnb_price_opt/src/main/java/com/lambda/bw_airbnb_price_opt/service/NeighbourHoodGroupService.java
 /Library/WebServer/Documents/lambda/bw_airbnb_price_opt/src/main/java/com/lambda/bw_airbnb_price_opt/model/RoomType.java
+/Library/WebServer/Documents/lambda/bw_airbnb_price_opt/src/main/java/com/lambda/bw_airbnb_price_opt/model/Resp.java
 /Library/WebServer/Documents/lambda/bw_airbnb_price_opt/src/main/java/com/lambda/bw_airbnb_price_opt/service/UserService.java
 /Library/WebServer/Documents/lambda/bw_airbnb_price_opt/src/main/java/com/lambda/bw_airbnb_price_opt/model/Auditable.java
 /Library/WebServer/Documents/lambda/bw_airbnb_price_opt/src/main/java/com/lambda/bw_airbnb_price_opt/controllers/PropertyTypeController.java

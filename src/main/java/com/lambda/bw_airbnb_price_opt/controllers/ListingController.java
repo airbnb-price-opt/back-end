@@ -7,6 +7,7 @@ import com.lambda.bw_airbnb_price_opt.model.PropertyType;
 import com.lambda.bw_airbnb_price_opt.service.*;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jackson.JsonObjectSerializer;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.*;
@@ -50,7 +51,7 @@ public class ListingController {
                 @ApiResponse(code = 500, message = "Error creating Listing", response = ErrorDetail.class)
         } )
         @PostMapping(value = "/new")
-        public ResponseEntity<?> addNewListing(@Valid @RequestBody Listing newListing) throws URISyntaxException
+        public ResponseEntity<?> addNewListing(@RequestBody Listing newListing) throws URISyntaxException
         {
             RestTemplate restTemplate = new RestTemplate();
             String url = "https://airbnb-data-science-app.herokuapp.com/api";
@@ -79,17 +80,17 @@ public class ListingController {
             map.add("accommodates", newListing.getAccommodates());
             HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<MultiValueMap<String, Object>>(map, headers);
 
-            ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
-            System.out.println(response);
+            ResponseEntity<Double> response = restTemplate.postForEntity( url, request , Double.class );
+            System.out.println(response.getBody());
 
-
+            newListing.setPrice(response.getBody());
             newListing = listingService.save(newListing);
             HttpHeaders responseHeaders = new HttpHeaders();
             URI newGroupURI = ServletUriComponentsBuilder
                     .fromCurrentRequest().path("/{listing_id}").buildAndExpand(newListing.getListing_id()).toUri();
             responseHeaders.setLocation(newGroupURI);
 
-            return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+            return new ResponseEntity<>(newListing, responseHeaders, HttpStatus.CREATED);
         }
 
     @ApiOperation(value = "Updates an existing Listing with existing relationships", response = void.class)
