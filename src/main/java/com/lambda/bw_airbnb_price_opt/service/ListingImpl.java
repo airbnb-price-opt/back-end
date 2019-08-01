@@ -142,4 +142,15 @@ public class ListingImpl implements ListingService {
         }
         return listingRepository.save(currentListing);
     }
+
+    @Override
+    public void delete(Long id) throws ResourceNotFoundException {
+        if (listingRepository.findById(id).isPresent())
+        {
+            listingRepository.deleteById(id);
+        } else
+        {
+            throw new ResourceNotFoundException(Long.toString(id));
+        }
+    }
 }

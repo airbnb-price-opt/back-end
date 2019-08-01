@@ -11,4 +11,6 @@ public interface ListingService {
     Listing save(Listing neighbourHoodGroup);
 
     Listing update(Listing listing, Long id);
+
+    void delete(Long id);
 }

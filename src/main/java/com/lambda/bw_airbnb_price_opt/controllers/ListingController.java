@@ -81,7 +81,7 @@ public class ListingController {
             @ApiResponse(code = 500, message = "Error updating Listing", response = ErrorDetail.class)
     } )
     @PutMapping(value = "/update/{id}")
-    public ResponseEntity<?> updateUser(HttpServletRequest request,
+    public ResponseEntity<?> updateListing(HttpServletRequest request,
             @RequestBody
                     Listing updateListing,
             @PathVariable
@@ -121,6 +121,51 @@ public class ListingController {
 //        }
 //        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
         listingService.update(updateListing, id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "Deletes an existing Listing", response = void.class)
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Listing deleted Successfully", response = void.class),
+            @ApiResponse(code = 500, message = "Error deleting Listing", response = ErrorDetail.class)
+    } )
+    @DeleteMapping(value = "/delete/{id}")
+    public ResponseEntity<?> deleteListing(@PathVariable long id)
+    {
+        //        {
+        //            "listing_id": 23,
+        //                "name": "Final Update",
+        //                "latitude": 121.02310231,
+        //                "longitude": 23.21321,
+        //                "minimum_nights": 3,
+        //                "maximum_nights": 4,
+        //                "accommodates": 3,
+        //                "bathrooms": 1,
+        //                "bedrooms": 1,
+        //                "price": 160.0,
+        //                "security_deposit": 500.0,
+        //                "cleaning_fee": 210.0,
+        //                "guests_included": 12,
+        //                "extra_people": 38.0,
+        //                "has_availability": true,
+        //                "bedType": {
+        //            "bed_type_id": 8
+        //        },
+        //            "neighbourHood": {
+        //            "neighbourhood_id": 22
+        //        },
+        //            "propertyType": {
+        //            "property_type_id": 12
+        //        },
+        //            "roomType": {
+        //            "room_type_id": 17
+        //        },
+        //            "cancellationPolicy": {
+        //            "cancellation_policy_id": 20
+        //        }
+        //        }
+        //        logger.trace(request.getMethod().toUpperCase() + " " + request.getRequestURI() + " accessed");
+        listingService.delete(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
