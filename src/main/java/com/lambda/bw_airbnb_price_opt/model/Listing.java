@@ -51,6 +51,9 @@ public class Listing extends Auditable {
 
     private Double reviews_per_month;
 
+    private int amenities_num;
+
+    private int calculated_host_listings_count;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bed_type_id",
@@ -96,7 +99,6 @@ public class Listing extends Auditable {
             Integer accommodates,
             Integer bathrooms,
             Integer bedrooms,
-            Double price,
             Double security_deposit,
             Double cleaning_fee,
             Integer guests_included,
@@ -106,7 +108,8 @@ public class Listing extends Auditable {
             PropertyType propertyType,
             RoomType roomType,
             CancellationPolicy cancellationPolicy,
-            BedType bedType
+            BedType bedType,
+            int amenities_num
     ) {
         this.name = name;
         this.latitude = latitude;
@@ -116,7 +119,7 @@ public class Listing extends Auditable {
         this.accommodates = accommodates;
         this.bathrooms = bathrooms;
         this.bedrooms = bedrooms;
-        this.price = price;
+//        this.price = price;
         this.security_deposit = security_deposit;
         this.cleaning_fee = cleaning_fee;
         this.guests_included = guests_included;
@@ -127,6 +130,7 @@ public class Listing extends Auditable {
         this.roomType = roomType;
         this.cancellationPolicy = cancellationPolicy;
         this.bedType = bedType;
+        this.amenities_num = amenities_num;
 
         setNumber_of_reviews((int)(Math.random() * ((400 - 1) + 1)) + 1);
 
@@ -139,10 +143,20 @@ public class Listing extends Auditable {
         setReview_scores_location((int)(Math.random() * ((10 - 1) + 1)) + 1);
 
         setReviews_per_month((Math.random() * ((10 - 1) + 1)) + 1);
+
+        setCalculated_host_listings_count((int)(Math.random() * ((200 - 1) + 1)) + 1);
     }
 
     public int getNumber_of_reviews() {
         return number_of_reviews;
+    }
+
+    public int getAmenities() {
+        return amenities_num;
+    }
+
+    public void setAmenities(int amenities_num) {
+        this.amenities_num = amenities_num;
     }
 
     public void setNumber_of_reviews(int number_of_reviews) {
@@ -163,6 +177,22 @@ public class Listing extends Auditable {
 
     public void setReview_scores_rating(int review_scores_rating) {
         this.review_scores_rating = review_scores_rating;
+    }
+
+    public int getCalculated_host_listings_count() {
+        return calculated_host_listings_count;
+    }
+
+    public int getAmenities_num() {
+        return amenities_num;
+    }
+
+    public void setAmenities_num(int amenities_num) {
+        this.amenities_num = amenities_num;
+    }
+
+    public void setCalculated_host_listings_count(int calculated_host_listings_count) {
+        this.calculated_host_listings_count = calculated_host_listings_count;
     }
 
     public int getReview_scores_communication() {

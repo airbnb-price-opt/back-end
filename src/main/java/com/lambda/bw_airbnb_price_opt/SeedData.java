@@ -306,10 +306,10 @@ public class SeedData implements CommandLineRunner
                         -123.21321,
                         3, 4,
                         3,
-                        1,1,
-                        60.00,200.00,30.00,
+                        1,
+                        1,200.00,30.00,
                         1,28.00,true,
-                        neighbourHoods.get(i),p2,room1,c1, b1));
+                        neighbourHoods.get(i),p2,room1,c1, b1, 23));
                 neighbourHoodRepository.save(neighbourHoods.get(i));
             } else {
                 neighbourHoodRepository.save(neighbourHoods.get(i));

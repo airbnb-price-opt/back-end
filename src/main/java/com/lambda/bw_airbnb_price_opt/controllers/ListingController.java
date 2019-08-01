@@ -9,10 +9,11 @@ import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
@@ -51,25 +52,41 @@ public class ListingController {
         @PostMapping(value = "/new")
         public ResponseEntity<?> addNewListing(@Valid @RequestBody Listing newListing) throws URISyntaxException
         {
-//            Listing test = new Listing(
-//                    newListing.getName(),
-//                    newListing.getLatitude(),
-//                    newListing.getLongitude(),
-//                    newListing.getMinimum_nights(), newListing.getMaximum_nights(),
-//                    newListing.getAccommodates(),
-//                    newListing.getBathrooms(),newListing.getBedrooms(),
-//                    newListing.getPrice(),newListing.getSecurity_deposit(),newListing.getCleaning_fee(),
-//                    newListing.getGuests_included(),newListing.getExtra_people(),newListing.getHas_availability(),
-//                    neighbourHoodService.findById(newListing.getNeighbourHood().getNeighbourhood_id()),
-//                    propertyTypeService.findById(newListing.getPropertyType().getProperty_type_id()),
-//                    roomTypeService.findById(newListing.getRoomType().getRoom_type_id()),
-//                    cancellationPolicyService.findById(newListing.getCancellationPolicy().getCancellation_policy_id()),
-//                    bedTypeService.findById(newListing.getBedType().getBed_type_id()));
+            RestTemplate restTemplate = new RestTemplate();
+            String url = "https://airbnb-data-science-app.herokuapp.com/api";
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+
+            MultiValueMap<String, Object> map= new LinkedMultiValueMap<String, Object>();
+            map.add("room_type", newListing.getRoomType().getRoom_type_id());
+            map.add("number_of_reviews", newListing.getNumber_of_reviews());
+            map.add("calculated_host_listings_count", newListing.getCalculated_host_listings_count());
+            map.add("availability_365", 342);
+            map.add("distance", 6);
+            map.add("cancellation_policy", newListing.getCancellationPolicy().getCancellation_policy_id());
+            map.add("size", 25);
+            map.add("amenities_num", newListing.getAmenities());
+            map.add("host_identity_verified", true);
+            map.add("security_deposit", newListing.getSecurity_deposit());
+            map.add("cleaning_fee", newListing.getCleaning_fee());
+            map.add("guests_included", newListing.getGuests_included());
+            map.add("extra_people", newListing.getExtra_people());
+            map.add("review_scores_rating", newListing.getReview_scores_rating());
+            map.add("bathrooms", newListing.getBathrooms());
+            map.add("bedrooms", newListing.getBedrooms());
+            map.add("beds", newListing.getBedrooms());
+            map.add("bed_type", newListing.getBedType().getBed_type_id());
+            map.add("accommodates", newListing.getAccommodates());
+            HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<MultiValueMap<String, Object>>(map, headers);
+
+            ResponseEntity<String> response = restTemplate.postForEntity( url, request , String.class );
+            System.out.println(response);
+
 
             newListing = listingService.save(newListing);
             HttpHeaders responseHeaders = new HttpHeaders();
             URI newGroupURI = ServletUriComponentsBuilder
-                    .fromCurrentRequest().path("/{bed_id}").buildAndExpand(newListing.getListing_id()).toUri();
+                    .fromCurrentRequest().path("/{listing_id}").buildAndExpand(newListing.getListing_id()).toUri();
             responseHeaders.setLocation(newGroupURI);
 
             return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);

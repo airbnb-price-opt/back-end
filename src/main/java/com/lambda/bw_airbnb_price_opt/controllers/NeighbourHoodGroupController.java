@@ -34,10 +34,7 @@ public class NeighbourHoodGroupController {
     @GetMapping(value = "/all", produces = {"application/json"})
     public ResponseEntity<?> listAllGroups(@PageableDefault(page = 0, size = 5) Pageable pageable)
     {
-        RestTemplate restTemplate = new RestTemplate();
-        String resourceUrl = "https://gturnquist-quoters.cfapps.io/api/random";
-        ResponseEntity<String> reponse = restTemplate.getForEntity(resourceUrl, String.class);
-        System.out.println(reponse);
+
         List<NeighbourHoodGroup> allGroups = neighbourHoodGroupService.findAll(pageable);
         return new ResponseEntity<>(allGroups, HttpStatus.OK);
     }
