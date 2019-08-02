@@ -55,6 +55,10 @@ public class Listing extends Auditable {
 
     private int calculated_host_listings_count;
 
+    private Double size;
+
+    private int distance;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "bed_type_id",
             nullable = false)
@@ -109,7 +113,9 @@ public class Listing extends Auditable {
             RoomType roomType,
             CancellationPolicy cancellationPolicy,
             BedType bedType,
-            int amenities_num
+            int amenities_num,
+            int distance,
+            Double size
     ) {
         this.name = name;
         this.latitude = latitude;
@@ -131,6 +137,8 @@ public class Listing extends Auditable {
         this.cancellationPolicy = cancellationPolicy;
         this.bedType = bedType;
         this.amenities_num = amenities_num;
+        this.size = size;
+        this.distance = distance;
 
         setNumber_of_reviews((int)(Math.random() * ((400 - 1) + 1)) + 1);
 
@@ -145,6 +153,22 @@ public class Listing extends Auditable {
         setReviews_per_month((Math.random() * ((10 - 1) + 1)) + 1);
 
         setCalculated_host_listings_count((int)(Math.random() * ((200 - 1) + 1)) + 1);
+    }
+
+    public Double getSize() {
+        return size;
+    }
+
+    public void setSize(Double size) {
+        this.size = size;
+    }
+
+    public int getDistance() {
+        return distance;
+    }
+
+    public void setDistance(int distance) {
+        this.distance = distance;
     }
 
     public int getNumber_of_reviews() {

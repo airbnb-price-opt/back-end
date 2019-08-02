@@ -78,6 +78,8 @@ public class ListingController {
             map.add("beds", newListing.getBedrooms());
             map.add("bed_type", newListing.getBedType().getBed_type_id());
             map.add("accommodates", newListing.getAccommodates());
+//            map.add("distance", newListing.getDistance());
+//            map.add("size", newListing.getSize());
             HttpEntity<MultiValueMap<String, Object>> request = new HttpEntity<MultiValueMap<String, Object>>(map, headers);
 
             ResponseEntity<Double> response = restTemplate.postForEntity( url, request , Double.class );
